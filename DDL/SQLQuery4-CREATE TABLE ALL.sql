@@ -49,7 +49,7 @@ CREATE TABLE StudentStates
 
 CREATE TABLE Students
 (
-	student_id			INT						PRIMARY KEY,
+	student_id			INT						PRIMARY KEY					IDENTITY(1,1),
 	last_name			NVARCHAR(150)			NOT NULL,
 	first_name			NVARCHAR(150)			NOT NULL,
 	middle_name			NVARCHAR(150),
@@ -115,7 +115,7 @@ CREATE TABLE RequiredDisciplies
 
 CREATE TABLE Schedule
 (
-	lesson_id			INT						PRIMARY KEY,
+	lesson_id			BIGINT					PRIMARY KEY,
 	[date]				DATE					NOT NULL,
 	[time]				TIME					NOT NULL,
 	[group]				INT						NOT NULL
@@ -131,10 +131,12 @@ CREATE TABLE Schedule
 CREATE TABLE Grades
 (
 	student				INT,
-	lesson				INT,
+	lesson				BIGINT,
 	PRIMARY KEY (student, lesson),
 	CONSTRAINT	FK_Grades_Students						FOREIGN KEY (student)					REFERENCES Students(student_id),
 	CONSTRAINT	FK_Grades_Schedule						FOREIGN KEY (lesson)					REFERENCES Schedule(lesson_id),
-	grade_1				TINYINT,
+	grade_1				TINYINT
+	CONSTRAINT			CK_Grade_1				CHECK (grade_1 > 0 AND grade_1 <=12),
 	grade_2				TINYINT
+	CONSTRAINT			CK_Grade_2				CHECK (grade_2 > 0 AND grade_2 <=12)
 );
