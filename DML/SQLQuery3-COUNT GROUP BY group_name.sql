@@ -1,12 +1,12 @@
-USE PD_321;
+п»їUSE PD_321;
 GO
 
-SELECT		group_name	AS	N'Группа',	COUNT([group])	AS	N'Кол-во студентов'
+SELECT		group_name	AS	N'Р“СЂСѓРїРїР°',	COUNT([group])	AS	N'РљРѕР»-РІРѕ СЃС‚СѓРґРµРЅС‚РѕРІ'
 FROM		Groups,	Students
 WHERE		group_id	=	[group]
 GROUP BY	group_name;
 
-SELECT		direction_name	AS	N'Направление',	COUNT(direction)	AS	N'Кол-во студентов'
+SELECT		direction_name	AS	N'РќР°РїСЂР°РІР»РµРЅРёРµ',	COUNT(direction)	AS	N'РљРѕР»-РІРѕ СЃС‚СѓРґРµРЅС‚РѕРІ'
 FROM		Students,	Groups,	Directions
 WHERE		group_id	=	[group]
 AND			direction	=	direction_id
