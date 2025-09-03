@@ -70,6 +70,12 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery4-CREATE TABLE ALL.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery5-ALTER TABLE LearningForms.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery5-ALTER TABLE LearningForms.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
