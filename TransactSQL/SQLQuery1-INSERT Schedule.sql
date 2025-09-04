@@ -1,5 +1,5 @@
-﻿USE PD_321;
-GO
+﻿--USE PD_321;
+--GO
 
 --CREATE	PROCEDURE	dbo.usp_makeSchedule
 --					(

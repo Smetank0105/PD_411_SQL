@@ -1,5 +1,5 @@
-﻿USE PD_321;
-GO
+﻿--USE PD_321;
+--GO
 
 --CREATE	PROCEDURE	dbo.usp_makeBaseSchedule
 --					(
@@ -63,9 +63,9 @@ GO
 --	DECLARE	@last_study_day_of_week	AS	INT	=	IIF(DATEPART(WEEKDAY,	@start_date)%2	=	0,	6,	5);
 	
 --	PRINT	('============================================');
---	PRINT	'BIT TeacherId: ' + CAST(@bit_teacher AS NVARCHAR(10)) + ', DiscId: ' + CAST(@bit_disc AS NVARCHAR(10)) + ', CountOfLesson' + CAST(@bit_les_count AS NVARCHAR(10));
---	PRINT	'WIN TeacherId: ' + CAST(@win_teacher AS NVARCHAR(10)) + ', DiscId: ' + CAST(@win_disc AS NVARCHAR(10)) + ', CountOfLesson' + CAST(@win_les_count AS NVARCHAR(10));
---	PRINT	'CPP TeacherId: ' + CAST(@cpp_teacher AS NVARCHAR(10)) + ', DiscId: ' + CAST(@cpp_disc AS NVARCHAR(10)) + ', CountOfLesson' + CAST(@cpp_les_count AS NVARCHAR(10));
+--	PRINT	'BIT TeacherId: ' + CAST(@bit_teacher AS NVARCHAR(10)) + ', DiscId: ' + CAST(@bit_disc AS NVARCHAR(10)) + ', CountOfLesson: ' + CAST(@bit_les_count AS NVARCHAR(10));
+--	PRINT	'WIN TeacherId: ' + CAST(@win_teacher AS NVARCHAR(10)) + ', DiscId: ' + CAST(@win_disc AS NVARCHAR(10)) + ', CountOfLesson: ' + CAST(@win_les_count AS NVARCHAR(10));
+--	PRINT	'CPP TeacherId: ' + CAST(@cpp_teacher AS NVARCHAR(10)) + ', DiscId: ' + CAST(@cpp_disc AS NVARCHAR(10)) + ', CountOfLesson: ' + CAST(@cpp_les_count AS NVARCHAR(10));
 --	PRINT	'GroupId: '+ CAST(@group AS NVARCHAR(10));
 --	PRINT	('============================================');
 	
@@ -92,11 +92,15 @@ GO
 --					PRINT	(@bit_les_number);
 --					PRINT	(@time);
 --					--------------------------------------BEGIN-INSERT--------------------------------------
+--					INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--					VALUES			(@group,	@bit_disc,		@bit_teacher,	@date,	@time);
 --					---------------------------------------END-INSERT---------------------------------------
 --					SET		@bit_les_number	=	@bit_les_number	+	1;
 --					PRINT	(@bit_les_number);
 --					PRINT	(DATEADD(MINUTE,	95,	@time));
 --					--------------------------------------BEGIN-INSERT--------------------------------------
+--					INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--					VALUES			(@group,	@bit_disc,		@bit_teacher,	@date,	DATEADD(MINUTE,	95,	@time));
 --					---------------------------------------END-INSERT---------------------------------------
 --					SET		@bit_les_number	=	@bit_les_number	+	1;
 --					SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
@@ -110,11 +114,15 @@ GO
 --					PRINT	(@win_les_number);
 --					PRINT	(@time);
 --					--------------------------------------BEGIN-INSERT--------------------------------------
+--					INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--					VALUES			(@group,	@win_disc,		@win_teacher,	@date,	@time);
 --					---------------------------------------END-INSERT---------------------------------------
 --					SET		@win_les_number	=	@win_les_number	+	1;
 --					PRINT	(@win_les_number);
 --					PRINT	(DATEADD(MINUTE,	95,	@time));
 --					--------------------------------------BEGIN-INSERT--------------------------------------
+--					INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--					VALUES			(@group,	@win_disc,		@win_teacher,	@date,	DATEADD(MINUTE,	95,	@time));
 --					---------------------------------------END-INSERT---------------------------------------
 --					SET		@win_les_number	=	@win_les_number	+	1;
 --					SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
@@ -129,11 +137,15 @@ GO
 --				PRINT	(@cpp_les_number);
 --				PRINT	(@time);
 --				--------------------------------------BEGIN-INSERT--------------------------------------
+--				INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--				VALUES			(@group,	@cpp_disc,		@cpp_teacher,	@date,	@time);
 --				---------------------------------------END-INSERT---------------------------------------
 --				SET		@cpp_les_number	=	@cpp_les_number	+	1;
 --				PRINT	(@cpp_les_number);
 --				PRINT	(DATEADD(MINUTE,	95,	@time));
 --				--------------------------------------BEGIN-INSERT--------------------------------------
+--				INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--				VALUES			(@group,	@cpp_disc,		@cpp_teacher,	@date,	DATEADD(MINUTE,	95,	@time));
 --				---------------------------------------END-INSERT---------------------------------------
 --				SET		@cpp_les_number	=	@cpp_les_number	+	1;
 --				SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
