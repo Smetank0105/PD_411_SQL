@@ -1,0 +1,250 @@
+﻿USE PD_321;
+GO
+
+--CREATE	PROCEDURE	dbo.usp_makeBaseSchedule
+--					(
+--					@bit_teacher_lname	NVARCHAR(50),
+--					@win_teacher_lname	NVARCHAR(50),
+--					@cpp_teacher_lname	NVARCHAR(50),
+--					@gr_name			NCHAR(10),
+--					@start_date			DATE,
+--					@start_time			TIME(0)
+--					)
+--AS
+--BEGIN
+--	DECLARE	@date			AS	DATE		=	@start_date;
+--	DECLARE	@time			AS	TIME(0)		=	@start_time;
+--	DECLARE	@bit_disc		AS	SMALLINT	=	(SELECT	discipline_id
+--												FROM	Disciplines
+--												WHERE	discipline_name	LIKE	N'%Основы Информационных технологий%'
+--												);
+--	DECLARE	@win_disc		AS	SMALLINT	=	(SELECT	discipline_id
+--												FROM	Disciplines
+--												WHERE	discipline_name	LIKE	N'%Конфигурирование Windows 10%'
+--												);
+--	DECLARE	@cpp_disc		AS	SMALLINT	=	(SELECT	discipline_id
+--												FROM	Disciplines
+--												WHERE	discipline_name	LIKE	N'%Процедурное программирование на языке C++%'
+--												);
+--	DECLARE	@bit_les_count	AS	TINYINT		=	(SELECT	number_of_lessons
+--												FROM	Disciplines
+--												WHERE	discipline_name	LIKE	N'%Основы Информационных технологий%'
+--												);
+--	DECLARE	@win_les_count	AS	TINYINT		=	(SELECT	number_of_lessons
+--												FROM	Disciplines
+--												WHERE	discipline_name	LIKE	N'%Конфигурирование Windows 10%'
+--												);
+--	DECLARE	@cpp_les_count	AS	TINYINT		=	(SELECT	number_of_lessons
+--												FROM	Disciplines
+--												WHERE	discipline_name	LIKE	N'%Процедурное программирование на языке C++%'
+--												);
+--	DECLARE	@group			AS	INT			=	(SELECT	group_id
+--												FROM	Groups
+--												WHERE	group_name	=	@gr_name
+--												);
+--	DECLARE	@bit_teacher	AS	INT			=	(SELECT	teacher_id
+--												FROM	Teachers
+--												WHERE	last_name	=	@bit_teacher_lname
+--												);
+--	DECLARE	@win_teacher	AS	INT			=	(SELECT	teacher_id
+--												FROM	Teachers
+--												WHERE	last_name	=	@win_teacher_lname
+--												);
+--	DECLARE	@cpp_teacher	AS	INT			=	(SELECT	teacher_id
+--												FROM	Teachers
+--												WHERE	last_name	=	@cpp_teacher_lname
+--												);
+	
+--	DECLARE	@bit_les_number	AS	TINYINT		=	1;
+--	DECLARE	@win_les_number	AS	TINYINT		=	1;
+--	DECLARE	@cpp_les_number	AS	TINYINT		=	1;
+--	DECLARE	@week_number	AS	TINYINT		=	1;
+	
+--	DECLARE	@last_study_day_of_week	AS	INT	=	IIF(DATEPART(WEEKDAY,	@start_date)%2	=	0,	6,	5);
+	
+--	PRINT	('============================================');
+--	PRINT	'BIT TeacherId: ' + CAST(@bit_teacher AS NVARCHAR(10)) + ', DiscId: ' + CAST(@bit_disc AS NVARCHAR(10)) + ', CountOfLesson' + CAST(@bit_les_count AS NVARCHAR(10));
+--	PRINT	'WIN TeacherId: ' + CAST(@win_teacher AS NVARCHAR(10)) + ', DiscId: ' + CAST(@win_disc AS NVARCHAR(10)) + ', CountOfLesson' + CAST(@win_les_count AS NVARCHAR(10));
+--	PRINT	'CPP TeacherId: ' + CAST(@cpp_teacher AS NVARCHAR(10)) + ', DiscId: ' + CAST(@cpp_disc AS NVARCHAR(10)) + ', CountOfLesson' + CAST(@cpp_les_count AS NVARCHAR(10));
+--	PRINT	'GroupId: '+ CAST(@group AS NVARCHAR(10));
+--	PRINT	('============================================');
+	
+--	WHILE	@cpp_les_number	<=	@cpp_les_count
+--	BEGIN
+--		-------------------------------------BEGIN-HOLIDAYS-------------------------------------
+--		IF	(@date	>=	'2024-12-30'
+--			AND	@date	<=	'2025-01-08'
+--			)
+--		BEGIN
+--			SET	@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
+--			CONTINUE;
+--		END
+--		--------------------------------------END-HOLIDAYS--------------------------------------
+--		IF	(DATEPART(WEEKDAY,	@date)	<	3)
+--		BEGIN
+--			IF	(@win_les_number	<=	@win_les_count)
+--			BEGIN
+--				IF	(@bit_les_number	<=	@bit_les_count)
+--				BEGIN
+--					PRINT	(@date);
+--					PRINT	(DATENAME(WEEKDAY,	@date));
+--					PRINT	('Основы Информационных технологий');
+--					PRINT	(@bit_les_number);
+--					PRINT	(@time);
+--					--------------------------------------BEGIN-INSERT--------------------------------------
+--					---------------------------------------END-INSERT---------------------------------------
+--					SET		@bit_les_number	=	@bit_les_number	+	1;
+--					PRINT	(@bit_les_number);
+--					PRINT	(DATEADD(MINUTE,	95,	@time));
+--					--------------------------------------BEGIN-INSERT--------------------------------------
+--					---------------------------------------END-INSERT---------------------------------------
+--					SET		@bit_les_number	=	@bit_les_number	+	1;
+--					SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
+--					PRINT	('--------------------------------------');
+--				END
+--				ELSE
+--				BEGIN
+--					PRINT	(@date);
+--					PRINT	(DATENAME(WEEKDAY,	@date));
+--					PRINT	('Конфигурирование Windows 10');
+--					PRINT	(@win_les_number);
+--					PRINT	(@time);
+--					--------------------------------------BEGIN-INSERT--------------------------------------
+--					---------------------------------------END-INSERT---------------------------------------
+--					SET		@win_les_number	=	@win_les_number	+	1;
+--					PRINT	(@win_les_number);
+--					PRINT	(DATEADD(MINUTE,	95,	@time));
+--					--------------------------------------BEGIN-INSERT--------------------------------------
+--					---------------------------------------END-INSERT---------------------------------------
+--					SET		@win_les_number	=	@win_les_number	+	1;
+--					SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
+--					PRINT	('--------------------------------------');
+--				END
+--			END
+--			ELSE
+--			BEGIN
+--				PRINT	(@date);
+--				PRINT	(DATENAME(WEEKDAY,	@date));
+--				PRINT	('Процедурное программирование на языке C++');
+--				PRINT	(@cpp_les_number);
+--				PRINT	(@time);
+--				--------------------------------------BEGIN-INSERT--------------------------------------
+--				---------------------------------------END-INSERT---------------------------------------
+--				SET		@cpp_les_number	=	@cpp_les_number	+	1;
+--				PRINT	(@cpp_les_number);
+--				PRINT	(DATEADD(MINUTE,	95,	@time));
+--				--------------------------------------BEGIN-INSERT--------------------------------------
+--				---------------------------------------END-INSERT---------------------------------------
+--				SET		@cpp_les_number	=	@cpp_les_number	+	1;
+--				SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
+--				PRINT	('--------------------------------------');
+--			END
+--		END
+--		IF	(DATEPART(WEEKDAY,	@date)	>=	3
+--			AND	DATEPART(WEEKDAY,	@date)	<	5
+--			AND	@cpp_les_number	<	@cpp_les_count
+--			)
+--		BEGIN
+--			IF	(@win_les_number	<=	@win_les_count
+--				AND	@week_number%2	<>	0)
+--			BEGIN
+--				IF	(@bit_les_number	<=	@bit_les_count)
+--				BEGIN
+--					PRINT	(@date);
+--					PRINT	(DATENAME(WEEKDAY,	@date));
+--					PRINT	('Основы Информационных технологий');
+--					PRINT	(@bit_les_number);
+--					PRINT	(@time);
+--					--------------------------------------BEGIN-INSERT--------------------------------------
+--					INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--					VALUES			(@group,	@bit_disc,		@bit_teacher,	@date,	@time);
+--					---------------------------------------END-INSERT---------------------------------------
+--					SET		@bit_les_number	=	@bit_les_number	+	1;
+--					PRINT	(@bit_les_number);
+--					PRINT	(DATEADD(MINUTE,	95,	@time));
+--					--------------------------------------BEGIN-INSERT--------------------------------------
+--					INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--					VALUES			(@group,	@bit_disc,		@bit_teacher,	@date,	DATEADD(MINUTE,	95,	@time));
+--					---------------------------------------END-INSERT---------------------------------------
+--					SET		@bit_les_number	=	@bit_les_number	+	1;
+--					SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
+--					PRINT	('--------------------------------------');
+--				END
+--				ELSE
+--				BEGIN
+--					PRINT	(@date);
+--					PRINT	(DATENAME(WEEKDAY,	@date));
+--					PRINT	('Конфигурирование Windows 10');
+--					PRINT	(@win_les_number);
+--					PRINT	(@time);
+--					--------------------------------------BEGIN-INSERT--------------------------------------
+--					INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--					VALUES			(@group,	@win_disc,		@win_teacher,	@date,	@time);
+--					---------------------------------------END-INSERT---------------------------------------
+--					SET		@win_les_number	=	@win_les_number	+	1;
+--					PRINT	(@win_les_number);
+--					PRINT	(DATEADD(MINUTE,	95,	@time));
+--					--------------------------------------BEGIN-INSERT--------------------------------------
+--					INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--					VALUES			(@group,	@win_disc,		@win_teacher,	@date,	DATEADD(MINUTE,	95,	@time));
+--					---------------------------------------END-INSERT---------------------------------------
+--					SET		@win_les_number	=	@win_les_number	+	1;
+--					SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
+--					PRINT	('--------------------------------------');
+--				END
+--			END
+--			ELSE
+--			BEGIN
+--				PRINT	(@date);
+--				PRINT	(DATENAME(WEEKDAY,	@date));
+--				PRINT	('Процедурное программирование на языке C++');
+--				PRINT	(@cpp_les_number);
+--				PRINT	(@time);
+--				--------------------------------------BEGIN-INSERT--------------------------------------
+--				INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--				VALUES			(@group,	@cpp_disc,		@cpp_teacher,	@date,	@time);
+--				---------------------------------------END-INSERT---------------------------------------
+--				SET		@cpp_les_number	=	@cpp_les_number	+	1;
+--				PRINT	(@cpp_les_number);
+--				PRINT	(DATEADD(MINUTE,	95,	@time));
+--				--------------------------------------BEGIN-INSERT--------------------------------------
+--				INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--				VALUES			(@group,	@cpp_disc,		@cpp_teacher,	@date,	DATEADD(MINUTE,	95,	@time));
+--				---------------------------------------END-INSERT---------------------------------------
+--				SET		@cpp_les_number	=	@cpp_les_number	+	1;
+--				SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
+--				PRINT	('--------------------------------------');
+--			END
+--		END
+--		IF	(DATEPART(WEEKDAY,	@date)	>=	5
+--			AND	@cpp_les_number	<	@cpp_les_count
+--			)
+--		BEGIN
+--			SET		@week_number	=	@week_number	+	1;
+--			PRINT	(@date);
+--			PRINT	(DATENAME(WEEKDAY,	@date));
+--			PRINT	('Процедурное программирование на языке C++');
+--			PRINT	(@cpp_les_number);
+--			PRINT	(@time);
+--			--------------------------------------BEGIN-INSERT--------------------------------------
+--			INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--			VALUES			(@group,	@cpp_disc,		@cpp_teacher,	@date,	@time);
+--			---------------------------------------END-INSERT---------------------------------------
+--			SET		@cpp_les_number	=	@cpp_les_number	+	1;
+--			PRINT	(@cpp_les_number);
+--			PRINT	(DATEADD(MINUTE,	95,	@time));
+--			--------------------------------------BEGIN-INSERT--------------------------------------
+--			INSERT	Schedule([group],	discipline,		teacher,		[date],	[time])
+--			VALUES			(@group,	@cpp_disc,		@cpp_teacher,	@date,	DATEADD(MINUTE,	95,	@time));
+--			---------------------------------------END-INSERT---------------------------------------
+--			SET		@cpp_les_number	=	@cpp_les_number	+	1;
+--			SET		@date	=	DATEADD(DAY,	IIF(DATEPART(WEEKDAY,	@date)	=	@last_study_day_of_week,	3,	2),	@date);
+--			PRINT	('--------------------------------------');
+--		END
+--	END
+--END;
+--GO
+
+--SET	DATEFIRST	1;
+
+--EXECUTE dbo.usp_makeBaseSchedule N'Свищев', N'Свищев', N'Амелькин', N'PD_411', '2024-08-27', '13:30'; 

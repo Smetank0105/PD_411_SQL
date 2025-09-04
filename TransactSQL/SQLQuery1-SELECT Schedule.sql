@@ -1,0 +1,4 @@
+USE PD_321;
+GO
+
+SELECT	*	FROM	Schedule;
