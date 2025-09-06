@@ -70,6 +70,12 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery4-CREATE TABLE ALL.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery5-ALTER Groups.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery5-ALTER Groups.sql</FullPath>
+        </FileNode>
         <FileNode Name="SQLQuery5-ALTER TABLE LearningForms.sql">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
