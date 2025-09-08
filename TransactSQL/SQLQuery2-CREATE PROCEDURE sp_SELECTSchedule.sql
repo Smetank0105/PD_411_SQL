@@ -10,7 +10,7 @@ BEGIN
 			[Группа]		=	group_name,
 			[Дисциплина]	=	discipline_name,
 			[Преподаватель]	=	FORMATMESSAGE(N'%s %s %s', last_name, first_name, middle_name),
-			[Дент недели]	=	DATENAME(WEEKDAY, [date]),
+			[День недели]	=	DATENAME(WEEKDAY, [date]),
 			[Дата]			=	[date],
 			[Время]			=	[time],
 			[Статус]		=	IIF(spent = 1, N'Проведено', N'Запланированно')

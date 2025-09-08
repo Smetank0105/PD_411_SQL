@@ -28,6 +28,12 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery0-Calling Procedures.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery100-CREATE FUNCTION GetListOfLearningDays.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SMETANK\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SMETANK\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery100-CREATE FUNCTION GetListOfLearningDays.sql</FullPath>
+        </FileNode>
         <FileNode Name="SQLQuery100-CREATE FUNCTION GetNextLearningDay.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SMETANK\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>SMETANK\SQLEXPRESS</AssociatedConnSrvName>
@@ -63,6 +69,12 @@
           <AssociatedConnSrvName>SMETANK\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>SQLQuery2-CREATE PROCEDURE sp_AddSchedule.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery2-CREATE PROCEDURE sp_SELECTGroups.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SMETANK\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SMETANK\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery2-CREATE PROCEDURE sp_SELECTGroups.sql</FullPath>
         </FileNode>
         <FileNode Name="SQLQuery2-CREATE PROCEDURE sp_SELECTSchedule.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SMETANK\SQLEXPRESS:True</AssociatedConnectionMoniker>
