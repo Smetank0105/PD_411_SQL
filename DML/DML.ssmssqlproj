@@ -76,6 +76,12 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery4-INSERT Teachers.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery7-Holidays.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery7-Holidays.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">

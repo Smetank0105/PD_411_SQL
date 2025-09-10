@@ -1,0 +1,8 @@
+--SQLQuery7-HolidaysCHeack.sql
+SET DATEFIRST 1;
+USE PD_321;
+GO
+
+--DELETE FROM DaysOFF;
+EXEC sp_SetDaysOff 2026;
+SELECT	*	FROM	DaysOFF;
