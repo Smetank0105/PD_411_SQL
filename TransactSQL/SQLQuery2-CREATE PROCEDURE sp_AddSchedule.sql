@@ -28,19 +28,25 @@ BEGIN
 
 	WHILE	@lesson_number	<=	@lessons_count
 	BEGIN
-		IF	NOT	EXISTS	(SELECT	lesson_id FROM Schedule WHERE [group] = @group AND [date] = @date AND [time] = @start_time)
+		IF	dbo.IsHoliday(@date) = 1
 		BEGIN
-			INSERT	Schedule
-					([group]	,discipline,	teacher,	[date],	[time],	spent)
-			VALUES
-					(@group,	@discipline,	@teacher,	@date,	@start_time,					IIF(@date<GETDATE(),1,0)),
-					(@group,	@discipline,	@teacher,	@date,	DATEADD(MINUTE,95,@start_time),	IIF(@date<GETDATE(),1,0));
-					SET	@lesson_number	=	@lesson_number	+	2;
+			SET	@date		=	dbo.GetNextLearningDay(@group_name, @date);
+			CONTINUE
 		END
-		ELSE
-		BEGIN
-			PRINT(FORMATMESSAGE(N'%s %s у группы "%s" уже занято', CAST(@date AS NCHAR(10)), CAST(@start_time AS NCHAR(8)), @group_name));
-		END
-		SET	@date =	dbo.GetNextLearningDay(@group_name, DEFAULT);
+		--IF	NOT	EXISTS	(SELECT	lesson_id FROM Schedule WHERE [group] = @group AND [date] = @date AND [time] = @start_time)
+		--BEGIN
+		--	INSERT	Schedule
+		--			([group]	,discipline,	teacher,	[date],	[time],	spent)
+		--	VALUES
+		--			(@group,	@discipline,	@teacher,	@date,	@start_time,					IIF(@date<GETDATE(),1,0)),
+		--			(@group,	@discipline,	@teacher,	@date,	DATEADD(MINUTE,95,@start_time),	IIF(@date<GETDATE(),1,0));
+		--			SET	@lesson_number	=	@lesson_number	+	2;
+		--END
+		--ELSE
+		--BEGIN
+		--	PRINT(FORMATMESSAGE(N'%s %s у группы "%s" уже занято', CAST(@date AS NCHAR(10)), CAST(@start_time AS NCHAR(8)), @group_name));
+		--END
+		EXEC sp_InsertLesson	@group, @discipline, @teacher, @date, @start_time, @lesson_number OUTPUT;
+		SET	@date			=	dbo.GetNextLearningDay(@group_name, DEFAULT);
 	END
 END
