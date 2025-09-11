@@ -82,6 +82,12 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery2-CREATE PROCEDURE sp_InsertLesson.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery2-CREATE PROCEDURE sp_MoveSchedule.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SMETANK\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SMETANK\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery2-CREATE PROCEDURE sp_MoveSchedule.sql</FullPath>
+        </FileNode>
         <FileNode Name="SQLQuery2-CREATE PROCEDURE sp_SELECTGroups.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SMETANK\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>SMETANK\SQLEXPRESS</AssociatedConnSrvName>
