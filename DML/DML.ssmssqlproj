@@ -82,6 +82,12 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery7-Holidays.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery8-CREATE TRIGGER Trg_AfterScheduleUpdate_InsertCompleteDisciplines.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery8-CREATE TRIGGER Trg_AfterScheduleUpdate_InsertCompleteDisciplines.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
